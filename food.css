@@ -1,0 +1,22 @@
+.hide{
+    color:red;
+    display: none;
+}
+
+.left{
+    width:40%;
+    float:left;
+}
+
+
+.right{
+    width:40%;
+    float:right;
+    height:600px;
+}
+
+textarea{
+    width:100%;
+    float:left;
+    height:100%;
+}
