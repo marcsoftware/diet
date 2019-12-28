@@ -30,7 +30,7 @@ function init(){
 	list = list.map(wrap);
 
 	
-
+ total();
 	document.getElementById('list').innerHTML=list.join("<br/>");
 	
 }
