@@ -15,7 +15,8 @@
 // 
 //---------------------------------------------------------------------------------
 window.onload=init;
-
+var date_offset=0;
+var full_date;
 
 //---------------------------------------------------------------------------------
 //
@@ -28,7 +29,7 @@ function init(){
 	
 
 	list = list.map(wrap);
-
+	getDate();
 	
  total();
 	document.getElementById('list').innerHTML=list.join("<br/>");
@@ -78,6 +79,7 @@ function save() {
 	  var data = new FormData();
       var consumed = document.getElementById('consumed').value;
 	  data.append('consumed',consumed);
+	  data.append('date',full_date);
       // AJAX CALL
       var xhr = new XMLHttpRequest();
       xhr.open('POST', "save.php", true);
@@ -88,6 +90,51 @@ function save() {
       xhr.send(data);
       return false;
     }
+
+//---------------------------------------------------------------------------------
+// change date to yesterday
+//---------------------------------------------------------------------------------	
+function prev(){
+	
+	date_offset--;
+	
+	getDate();
+}
+
+
+//---------------------------------------------------------------------------------
+// change date to tomarrow
+//---------------------------------------------------------------------------------	
+function next(){
+	
+	date_offset++;
+	
+	getDate();
+}
+
+
+//---------------------------------------------------------------------------------
+// get date that matches the  PHP format
+//---------------------------------------------------------------------------------	
+function getDate(){
+
+	today = new Date();
+	target_date = new Date(today);
+	target_date.setDate(today.getDate() + date_offset); 
+
+	var year=target_date.getFullYear();
+	var month=target_date.getMonth()+1;
+	if(month<10){
+		month="0"+month;
+	}
+	var date=target_date.getDate();
+	if(date<10){
+		date="0"+date;
+	}
+	
+	 full_date=( `${year}-${month}-${date}`);
+	document.getElementById("date").innerHTML=full_date;
+}
 </script>
 
 
@@ -110,17 +157,19 @@ function save() {
 </div>
 
 <div class='right'>
-<button onclick="save()">Click me</button> 
+<button onclick="prev()">◀</button> <span id='date'>0</span><button onclick="next()">▶</button>
 <p id='total'></p>
 <textarea id='consumed' onkeyup='total()'>
 <?php
-	//C:\xampp\htdocs\index.php
-	$file = file_get_contents('./data.txt', FILE_USE_INCLUDE_PATH);
+	//get todays date
+	$today=date("Y-m-d");
+	//read file
+	$file = file_get_contents("./archive/{$today}.txt", FILE_USE_INCLUDE_PATH);
 	echo $file;
 	?>
 
 </textarea>
-
+<?php echo $today ?>
 </div>
 
 </body>
