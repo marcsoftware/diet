@@ -74,6 +74,7 @@ function consume(handle){
 //---------------------------------------------------------------------------------
 function total(){
 	var all = document.getElementById('consumed').value;
+	 all = all.replace(/\(([^\)]+)\)/g,""); // ignore numbers in parenthesis
 	var numbers = all.match(/\d+/g);
 	var sum=numbers.reduce(myFunc);
 	document.getElementById('total').innerHTML=sum	;
