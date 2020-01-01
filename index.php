@@ -25,14 +25,12 @@ function init(){
 	var pantry =document.getElementById('pantry').innerHTML;
 	var list = pantry.split("\n");
 
-	
-	
-
 	list = list.map(wrap);
 	getDate();
 	
- total();
+ 	total();
 	document.getElementById('list').innerHTML=list.join("<br/>");
+	readArchive(full_date);
 	
 }
 
@@ -65,9 +63,30 @@ function consume(handle){
 	// put in textarea called consumed
 	document.getElementById('consumed').value+=clock+(handle.value)+'\n';
 	total();
+
+	
 	
 }
 
+//---------------------------------------------------------------------------------
+// Read archived file
+//---------------------------------------------------------------------------------
+function readArchive( date){
+	// GET DATA
+	var data = new FormData();
+      
+	  
+	  data.append('date',date);
+      // AJAX CALL
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', "readArchive.php", true);
+      xhr.onload = function () {
+        console.log(this.response);
+       
+      };
+      xhr.send(data);
+      return false;
+}
 
 //---------------------------------------------------------------------------------
 // caculate the total calories and render the total
@@ -106,7 +125,7 @@ function save() {
       };
       xhr.send(data);
       return false;
-    }
+}
 
 //---------------------------------------------------------------------------------
 // change date to yesterday or before
