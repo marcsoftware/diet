@@ -44,17 +44,33 @@ function wrap(item, index) {
 }
 
 //---------------------------------------------------------------------------------
-//
+// copy buttons contents to the TEXATAREA 
+// this function is called when user clicks button
 //---------------------------------------------------------------------------------
 function consume(handle){
-	document.getElementById('consumed').value+=(handle.value)+'\n';
+	//get hours and minutes
+	var date= new Date();
+	var seconds = date.getSeconds();
+	var minutes = date.getMinutes();
+	if(minutes <10){
+		minutes = "0"+minutes;
+	}
+	var hour = date.getHours();
+	if(hour <10){
+		hour = "0"+hour;
+	}
+
+	var clock = `( ${hour}:${minutes} )`;
+	
+	// put in textarea called consumed
+	document.getElementById('consumed').value+=clock+(handle.value)+'\n';
 	total();
 	
 }
 
 
 //---------------------------------------------------------------------------------
-//
+// caculate the total calories and render the total
 //---------------------------------------------------------------------------------
 function total(){
 	var all = document.getElementById('consumed').value;
@@ -65,14 +81,14 @@ function total(){
 }
 
 //---------------------------------------------------------------------------------
-// add
+// add number to the total
 //---------------------------------------------------------------------------------
 function myFunc(total, num) {
   return parseInt(total) + parseInt(num);
 } 
 
 //---------------------------------------------------------------------------------
-// save
+// permanantly save the users's consumed food items to a file
 //---------------------------------------------------------------------------------
 function save() {
       // GET DATA
@@ -92,7 +108,7 @@ function save() {
     }
 
 //---------------------------------------------------------------------------------
-// change date to yesterday
+// change date to yesterday or before
 //---------------------------------------------------------------------------------	
 function prev(){
 	
@@ -103,7 +119,7 @@ function prev(){
 
 
 //---------------------------------------------------------------------------------
-// change date to tomarrow
+// change date to tomarrow or later
 //---------------------------------------------------------------------------------	
 function next(){
 	
