@@ -30,7 +30,9 @@ function init(){
 	
  	total();
 	document.getElementById('list').innerHTML=list.join("<br/>");
-	readArchive(full_date);
+	//readArchive(full_date);
+	readArchive("2019-12-31");
+	
 	
 }
 
@@ -75,13 +77,18 @@ function readArchive( date){
 	// GET DATA
 	var data = new FormData();
       
+	  //var type = XMLHttpRequest.responseType;
+
+//XMLHttpRequest.responseType = type;
 	  
 	  data.append('date',date);
       // AJAX CALL
       var xhr = new XMLHttpRequest();
       xhr.open('POST', "readArchive.php", true);
       xhr.onload = function () {
-        console.log(this.response);
+		  console.log(this.response);
+        var res = (this.response);
+       
        
       };
       xhr.send(data);
@@ -93,8 +100,11 @@ function readArchive( date){
 //---------------------------------------------------------------------------------
 function total(){
 	var all = document.getElementById('consumed').value;
+	
 	 all = all.replace(/\(([^\)]+)\)/g,""); // ignore numbers in parenthesis
+	 all +=" 0 "; // to prevent null error
 	var numbers = all.match(/\d+/g);
+	
 	var sum=numbers.reduce(myFunc);
 	document.getElementById('total').innerHTML=sum	;
 	save();
