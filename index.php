@@ -52,6 +52,7 @@ function consume(handle){
 	var date= new Date();
 	var seconds = date.getSeconds();
 	var minutes = date.getMinutes();
+	var label="am"
 	if(minutes <10){
 		minutes = "0"+minutes;
 	}
@@ -60,7 +61,12 @@ function consume(handle){
 		hour = "0"+hour;
 	}
 
-	var clock = `( ${hour}:${minutes} )`;
+	if(hour > 12){
+		hour=hour-12;
+		label="pm";
+	}
+
+	var clock = `( ${hour}:${minutes}${label} )`;
 	
 	// put in textarea called consumed
 	document.getElementById('consumed').value+=clock+(handle.value)+'\n';
