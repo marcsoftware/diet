@@ -216,11 +216,7 @@ function getDate(){
 <p id='total'></p>
 <textarea id='consumed' onkeyup='total()'>
 <?php
-	//get todays date
-	$today=date("Y-m-d");
-	//read file
-	$file = file_get_contents("./archive/{$today}.txt", FILE_USE_INCLUDE_PATH);
-	echo $file;
+	
 	?>
 
 </textarea>
