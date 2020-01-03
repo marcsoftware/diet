@@ -31,7 +31,7 @@ function init(){
  	total();
 	document.getElementById('list').innerHTML=list.join("<br/>");
 	//readArchive(full_date);
-	readArchive("2019-12-31");
+	readArchive(full_date);
 	
 	
 }
@@ -92,6 +92,7 @@ function readArchive( date){
       var xhr = new XMLHttpRequest();
       xhr.open('POST', "readArchive.php", true);
       xhr.onload = function () {
+		  document.getElementById("consumed").value=this.response;
 		  console.log(this.response);
         var res = (this.response);
        
@@ -151,6 +152,7 @@ function prev(){
 	date_offset--;
 	
 	getDate();
+	readArchive(full_date);
 }
 
 
@@ -162,6 +164,7 @@ function next(){
 	date_offset++;
 	
 	getDate();
+	readArchive(full_date);
 }
 
 
