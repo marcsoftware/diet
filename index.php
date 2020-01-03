@@ -27,11 +27,11 @@ function init(){
 
 	list = list.map(wrap);
 	getDate();
-	
+	readArchive(full_date);
  	total();
 	document.getElementById('list').innerHTML=list.join("<br/>");
-	//readArchive(full_date);
-	readArchive(full_date);
+	
+	
 	
 	
 }
@@ -93,6 +93,8 @@ function readArchive( date){
       xhr.open('POST', "readArchive.php", true);
       xhr.onload = function () {
 		  document.getElementById("consumed").value=this.response;
+		 
+		  
 		  console.log(this.response);
         var res = (this.response);
        
@@ -131,7 +133,9 @@ function save() {
       // GET DATA
 	  var data = new FormData();
       var consumed = document.getElementById('consumed').value;
+	  
 	  data.append('consumed',consumed);
+	  
 	  data.append('date',full_date);
       // AJAX CALL
       var xhr = new XMLHttpRequest();
@@ -215,12 +219,10 @@ function getDate(){
 <button onclick="prev()">◀</button> <span id='date'>0</span><button onclick="next()">▶</button>
 <p id='total'></p>
 <textarea id='consumed' onkeyup='total()'>
-<?php
-	
-	?>
+
 
 </textarea>
-<?php echo $today ?>
+
 </div>
 
 </body>

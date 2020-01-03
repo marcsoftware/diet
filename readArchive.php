@@ -6,7 +6,7 @@ header("Content-Type: application/json");
 
 $date = $_POST['date'];
 
-$today=date("Y-m-d");
+
 //get todays date
 	
 	//read file
@@ -15,3 +15,4 @@ $today=date("Y-m-d");
 	//return $file;
 
 echo $file;
+
