@@ -200,6 +200,8 @@ function getDate(){
 	 full_date=( `${year}-${month}-${date}`);
 	document.getElementById("date").innerHTML=full_date;
 }
+
+
 </script>
 
 
@@ -224,7 +226,7 @@ function getDate(){
 <div class='right'>
 <button onclick="prev()">◀</button> <span id='date'>0</span><button onclick="next()">▶</button>
 <p id='total'></p>
-<textarea id='consumed' onkeyup='total()'>
+<textarea id='consumed' onkeyup='total();save();'>
 
 
 </textarea>
