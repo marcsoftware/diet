@@ -204,7 +204,7 @@ function getDate(){
 
 </script>
 
-
+<button type="button"> <img src="img/cashew.jpg" alt="Italian Trulli">Click Me!</button> 
 <p id='pantry' class='hide'>
 	<?php
 	//C:\xampp\htdocs\index.php
