@@ -28,9 +28,13 @@ function init(){
 	list = list.map(wrap);
 	getDate();
 	readArchive(full_date);
- 	total();
+ 	
 	document.getElementById('list').innerHTML=list.join("<br/>");
-	
+	total();
+
+	setTimeout(function () {
+		total();
+	}, 100);
 	
 	
 	
@@ -71,7 +75,7 @@ function consume(handle){
 	// put in textarea called consumed
 	document.getElementById('consumed').value+=clock+(handle.value)+'\n';
 	total();
-
+	save();
 	
 	
 }
@@ -116,7 +120,7 @@ function total(){
 	
 	var sum=numbers.reduce(myFunc);
 	document.getElementById('total').innerHTML=sum	;
-	save();
+	
 }
 
 //---------------------------------------------------------------------------------
@@ -157,6 +161,7 @@ function prev(){
 	
 	getDate();
 	readArchive(full_date);
+	total();
 }
 
 
@@ -169,6 +174,7 @@ function next(){
 	
 	getDate();
 	readArchive(full_date);
+	total();
 }
 
 
