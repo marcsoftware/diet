@@ -30,7 +30,7 @@ function init(){
 	readArchive(full_date);
  	
 	document.getElementById('list').innerHTML=list.join("<br/>");
-	total();
+	
 
 	setTimeout(function () {
 		total();
@@ -74,8 +74,8 @@ function consume(handle){
 	
 	// put in textarea called consumed
 	document.getElementById('consumed').value+=clock+(handle.value)+'\n';
-	total();
-	save();
+	
+	
 	
 	
 }
@@ -97,7 +97,7 @@ function readArchive( date){
       xhr.open('POST', "readArchive.php", true);
       xhr.onload = function () {
 		  document.getElementById("consumed").value=this.response;
-		 
+		 	total();
 		  
 		  console.log(this.response);
         var res = (this.response);
@@ -161,7 +161,7 @@ function prev(){
 	
 	getDate();
 	readArchive(full_date);
-	total();
+	
 }
 
 
@@ -174,7 +174,7 @@ function next(){
 	
 	getDate();
 	readArchive(full_date);
-	total();
+	
 }
 
 
@@ -204,7 +204,7 @@ function getDate(){
 
 </script>
 
-<button type="button"> <img src="img/cashew.jpg" alt="Italian Trulli">Click Me!</button> 
+
 <p id='pantry' class='hide'>
 	<?php
 	//C:\xampp\htdocs\index.php
@@ -213,7 +213,7 @@ function getDate(){
 	?>
 </p>
 
-<div class='left'>
+<div class='right'>
 	<p id='list'>
 		<?php
 		//C:\xampp\htdocs\index.php
@@ -223,10 +223,10 @@ function getDate(){
 	</p>
 </div>
 
-<div class='right'>
+<div class='left'>
 <button onclick="prev()">◀</button> <span id='date'>0</span><button onclick="next()">▶</button>
 <p id='total'></p>
-<textarea id='consumed' onkeyup='total();save();'>
+<textarea id='consumed' onkeyup='total();save();' >
 
 
 </textarea>
