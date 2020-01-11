@@ -44,7 +44,7 @@ function init(){
 // turn each item into a button
 //---------------------------------------------------------------------------------
 function wrap(item, index) {
-  return "<button value='ITEM' onclick='consume(this)'>ITEM</button>".replace(/ITEM/g,item);
+  return "<button value='ITEM' onclick='consume(this);total();save();'>ITEM</button>".replace(/ITEM/g,item);
 }
 
 //---------------------------------------------------------------------------------
