@@ -36,7 +36,18 @@ function init(){
 		total();
 	}, 100);
 	
+	///////////////
+	//add ENTER KEY EVENT to input
+	var input = document.getElementById("myInput");
+
 	
+	input.addEventListener("keyup", function(e) {
+		// Number 13 is the "Enter" key on the keyboard
+		if (event.keyCode === 13) {
+			document.getElementById("consumed").value+=(e.target.value)+"\n";
+
+		}
+	}); 
 	
 }
 
@@ -204,7 +215,7 @@ function getDate(){
 
 </script>
 
-
+<input type=text  id=myInput />
 <p id='pantry' class='hide'>
 	<?php
 	//C:\xampp\htdocs\index.php
